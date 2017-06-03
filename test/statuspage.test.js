@@ -108,24 +108,33 @@ describe('StatusPage', () => {
       s.generateCreateComponentPayload(name)
     ).toEqual(`component[name]=${name}`)
   })
-  //
-  // it('Should update and toggle components correctly', (done) =>  {
-  //   var s = new StatusPage()
-  //   const testing_component_id = '6jgmt1plscnx'
-  //   s.updateComponentState(testing_component_id, 'partial_outage', undefined)
-  //   .then((a) => {
-  //     s.getComponents((components) => {
-  //       var arr = components.filter(({id}) => id === testing_component_id)
-  //       expect(arr.length).toBe(1)
-  //       expect(arr[0].status).toEqual('partial_outage')
-  //       s.updateComponentState(testing_component_id, 'operational', undefined)
-  //       .then((d) => {
-  //         done()
-  //       })
-  //     })
-  //   })
-  // })
-  //
+
+  it('Should update and toggle components correctly', (done) =>  {
+    const status = 'partial_outage'
+    const pageId = 'asfawfr'
+    const componentId = 'potato1'
+    const instance = {
+      patch: (url, data) => {
+        expect(
+          url
+        ).toEqual(`/v1/pages/${pageId}/components/${componentId}.json`)
+        expect(
+          data
+        ).toEqual(`component[status]=${status}`)
+        done()
+      }
+    }
+
+
+    let s = new StatusPage(undefined, pageId)
+    s.instance = instance
+    s.updateComponentState(
+      componentId,
+      status,
+      undefined
+    )
+  })
+
   it('Should return environment', () => {
       var testTable = [
           {name: 'test-dev', desired: 'dev'},
