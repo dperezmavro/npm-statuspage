@@ -27,44 +27,21 @@ describe('StatusPage', () => {
   });
 
   it('Should generate the request string', () => {
-    var s = new StatusPage();
+    let s = new StatusPage();
     s.now = () => 42;
 
     expect(
       s.generateRequestParameters('31337')
     ).toEqual('data[timestamp]=42&data[value]=31337')
   });
-  //
-  // it('Should successfully post for valid page_id and metric_id', () => {
-  //   var s = new StatusPage();
-  //   var instance = axios.create();
-  //   var time = Date.now();
-  //   var metric_id = uuid();
-  //   var page_id = uuid();
-  //   var stub = sinon.stub(instance, 'post', function(path, params){
-  //       expect(path).toEqual(`/v1/pages/${page_id}/metrics/${metric_id}/data.json`);
-  //       var re = new RegExp(`^data\\[timestamp\\]=[0-9]+&data\\[value\\]=${time}$`);
-  //       expect(re.test(params)).toEqual(true);
-  //   });
-  //   s.instance = instance;
-  //   s.page_id = page_id;
-  //   s.updateMetric(metric_id, time);
-  // });
-  //
-  // it('Should not post for invalid page_id and metric_id', (done) => {
-  //   var s = new StatusPage();
-  //   s.updateMetric('', 1339)
-  //   .catch((e) => {
-  //     expect(e).toNotBe(undefined);
-  //     done();
-  //   });
-  // });
-  //
-  // it('Should generate API base path', () => {
-  //   var s = new StatusPage();
-  //   s.page_id = '123';
-  //   expect(s.generatePagePath()).toEqual('/v1/pages/123')
-  // });
+
+
+  it('Should generate API base path', () => {
+    const s = new StatusPage(undefined, '123');
+    expect(
+      s.generatePagePath()
+    ).toEqual('/v1/pages/123')
+  });
   //
   // it('Shoud generate component status payload', () => {
   //   var s = new StatusPage();
