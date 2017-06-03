@@ -76,7 +76,7 @@ describe('StatusPage', () => {
     .then(
       (data) => {
         expect(
-          data.data
+          data
         ).toEqual(['hello', 'world'])
         done()
       }

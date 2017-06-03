@@ -65,10 +65,12 @@ class StatusPage {
     )
   }
 
-  getComponents() {
-    return this.instance.get(
+  getComponents = async () => {
+    const res = await this.instance.get(
       this.generateComponentsUrl()
     )
+
+    return res.data
   }
 
   generateCreateComponentPayload(name) {
