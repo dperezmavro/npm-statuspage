@@ -1,3 +1,3 @@
-const statuspage = require('./dist/statuspage.js')
+const StatusPage = require('./dist/statuspage.js')
 
-module.exports = statuspage
+module.exports = StatusPage
