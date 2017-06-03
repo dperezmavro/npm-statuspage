@@ -126,70 +126,25 @@ describe('StatusPage', () => {
   //   })
   // })
   //
-  // it('Should return environment', () => {
-  //     var testTable = [
-  //         {name: 'test-dev', desired: 'dev'},
-  //         {name: 'test-smart-DEV', desired: 'dev'},
-  //         {name: 'test', desired: undefined},
-  //         {name: '', desired: undefined},
-  //         {name: 'test-SMART-DEV', desired: 'dev'},
-  //         {name: 'test-DEV', desired: 'dev'},
-  //         {name: 'test-PROD', desired: 'prod'},
-  //         {name: 'test-SI', desired: 'si'},
-  //         {name: 'test-smart-si', desired: 'si'},
-  //         {name: undefined, desired: undefined}
-  //     ]
-  //
-  //     testTable.forEach((t) => {
-  //         var status = new StatusPage()
-  //         expect(status.getComponentEnvironment(t.name)).toEqual(t.desired)
-  //     })
-  // })
-  //
-  // it('Should identify maintenance window', () => {
-  //     var status = new StatusPage()
-  //     var now = new moment()
-  //
-  //     const testTable = [
-  //         {hour: 10, result: false},
-  //         {hour: 0,  result: true},
-  //         {hour: 12, result: false},
-  //         {hour: 23, result: false},
-  //         {hour: 7,  result: false},
-  //         {hour: 5,  result: true}
-  //     ]
-  //     testTable.forEach((t) => {
-  //         now.hours(t.hour)
-  //         status.now = now
-  //
-  //         expect(status.isMaintenanceWindow()).toBe(t.result)
-  //     })
-  // })
-  //
-  // it('Should deal with maintenance window', () => {
-  //     var testTable = [
-  //         { hour: 10, name: 'test-dev', status: 'operational', desired: 'operational'},
-  //         { hour: 21, name: 'test-smart-DEV', status: 'major_disruption', desired: 'major_disruption'},
-  //         { hour: 4, name: 'test-DEV', status: 'major_outage', desired: 'under_maintenance'},
-  //         { hour: 0, name: 'test-SMART-DEV', status: 'minor_outage', desired: 'under_maintenance'},
-  //         { hour: 7, name: 'test-DEV', status: 'operational', desired: 'operational'},
-  //         { hour: 6, name: 'test-PROD', status: 'major_outage', desired: 'major_outage'},
-  //         { hour: 4, name: 'test-SI', status: 'minor_outage', desired: 'minor_outage'},
-  //         { hour: 3, name: 'test-smart-si', status: 'operational', desired: 'operational'},
-  //     ]
-  //
-  //     testTable.forEach((t) => {
-  //         var status = new StatusPage()
-  //         var now = new moment()
-  //         now.hour(t.hour)
-  //         status.now = now
-  //         var instance = axios.create()
-  //         sinon.stub(instance, 'patch', function(path, payload){
-  //             expect(payload).toEqual(`component[status]=${t.desired}`)
-  //         })
-  //
-  //         status.instance = instance
-  //         status.updateComponentState(undefined, t.status, t.name)
-  //     })
-  // })
+  it('Should return environment', () => {
+      var testTable = [
+          {name: 'test-dev', desired: 'dev'},
+          {name: 'test-smart-DEV', desired: 'dev'},
+          {name: 'test', desired: undefined},
+          {name: '', desired: undefined},
+          {name: 'test-SMART-DEV', desired: 'dev'},
+          {name: 'test-DEV', desired: 'dev'},
+          {name: 'test-PROD', desired: 'prod'},
+          {name: 'test-SI', desired: 'si'},
+          {name: 'test-smart-si', desired: 'si'},
+          {name: undefined, desired: undefined}
+      ]
+
+      let status = new StatusPage()
+      testTable.forEach((t) => {
+        expect(
+          status.getComponentEnvironment(t.name)
+        ).toEqual(t.desired)
+      })
+  })
 })
