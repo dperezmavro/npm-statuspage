@@ -100,12 +100,14 @@ describe('StatusPage', () => {
 
     s.createComponent(componentName)
   })
-  //
-  // it('Should generate an appropriate component name payload', () => {
-  //   var s = new StatusPage()
-  //   var res = s.generateCreateComponentPayload('potatoes-component')
-  //   expect(res).toEqual('component[name]=potatoes-component')
-  // })
+
+  it('Should generate an appropriate component name payload', () => {
+    let s = new StatusPage()
+    let name = 'potatoes-component'
+    expect(
+      s.generateCreateComponentPayload(name)
+    ).toEqual(`component[name]=${name}`)
+  })
   //
   // it('Should update and toggle components correctly', (done) =>  {
   //   var s = new StatusPage()
