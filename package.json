@@ -4,7 +4,8 @@
   "description": "A library to interact with the statuspage.io API",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'no tests yet'"
+    "make": "./node_modules/.bin/webpack",
+    "test": "npm run make && ./node_modules/.bin/mocha"
   },
   "keywords": [
     "npm",
