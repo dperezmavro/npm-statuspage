@@ -82,37 +82,24 @@ describe('StatusPage', () => {
       }
     )
   })
-  //
-  // it('Should fail to get components', () => {
-  //   var instance = axios.create()
-  //   sinon.stub(instance, 'get', function(){
-  //     return new Promise(function(acc, rej){
-  //       rej('1337-3rr0r')
-  //     })
-  //   })
-  //
-  //   var s = new StatusPage()
-  //   s.instance = instance
-  //   var spy = expect.createSpy()
-  //   s.getComponents(spy)
-  //
-  //   expect(spy).toNotHaveBeenCalled()
-  // })
-  //
-  // it('Should create a component', () => {
-  //   var instance = axios.create()
-  //   sinon.stub(instance, 'post', function(a, b){
-  //     expect(a).toEqual('/v1/pages/page_id/components.json')
-  //     expect(b).toEqual('component[name]=1337-c0mp0nent')
-  //   })
-  //
-  //   var s = new StatusPage()
-  //   s.page_id = 'page_id'
-  //   s.instance = instance
-  //
-  //   s.createComponent('1337-c0mp0nent')
-  //
-  // })
+
+  it('Should call createComponent', () => {
+    let page_id = 'cvbnm,,'
+    let componentName = '1337-c0mp0nent'
+    let s = new StatusPage(undefined, page_id)
+    s.instance = {
+      post: (url, data) => {
+        expect(
+          url
+        ).toEqual(`/v1/pages/${page_id}/components.json`)
+        expect(
+          data
+        ).toEqual(`component[name]=${componentName}`)
+      }
+    }
+
+    s.createComponent(componentName)
+  })
   //
   // it('Should generate an appropriate component name payload', () => {
   //   var s = new StatusPage()

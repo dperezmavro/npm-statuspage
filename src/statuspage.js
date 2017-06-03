@@ -82,8 +82,9 @@ class StatusPage {
   }
 
   createComponent(componentName) {
-    return this.instance.post(this.generateComponentsUrl(),
-                              this.generateCreateComponentPayload(componentName)
+    return this.instance.post(
+      this.generateComponentsUrl(),
+      this.generateCreateComponentPayload(componentName)
     )
   }
 
