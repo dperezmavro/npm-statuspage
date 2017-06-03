@@ -65,20 +65,22 @@ class StatusPage {
     )
   }
 
-  getComponents(callback) {
-    return this.instance.get(this.generateCreateComponentUrl())
+  getComponents() {
+    return this.instance.get(
+      this.generateComponentsUrl()
+    )
   }
 
   generateCreateComponentPayload(name) {
     return `component[name]=${name}`
   }
 
-  generateCreateComponentUrl() {
+  generateComponentsUrl() {
     return this.generatePagePath() + '/components.json'
   }
 
   createComponent(componentName) {
-    return this.instance.post(this.generateCreateComponentUrl(),
+    return this.instance.post(this.generateComponentsUrl(),
                               this.generateCreateComponentPayload(componentName)
     )
   }
