@@ -12,9 +12,9 @@ describe('StatusPage', () => {
       StatusPage
     ).toExist();
 
-    // expect(
-    //   Object.keys(StatusPage).length
-    // ).toBeGreaterThan(0)
+    expect(
+      new StatusPage()
+    ).toExist()
   });
 
   it('Should return POST path', () => {
@@ -25,14 +25,15 @@ describe('StatusPage', () => {
     )
     .toEqual(`/v1/pages/${pageId}/metrics/456/data.json`)
   });
-  //
-  // it('Should generate the request string', () => {
-  //   var s = new StatusPage();
-  //   var res = s.generateRequestParameters('31337');
-  //
-  //   expect(/^data\[timestamp\]=[0-9]+&data\[value\]=31337$/.test(res))
-  //   .toBe(true);
-  // });
+
+  it('Should generate the request string', () => {
+    var s = new StatusPage();
+    s.now = () => 42;
+
+    expect(
+      s.generateRequestParameters('31337')
+    ).toEqual('data[timestamp]=42&data[value]=31337')
+  });
   //
   // it('Should successfully post for valid page_id and metric_id', () => {
   //   var s = new StatusPage();
