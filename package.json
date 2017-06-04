@@ -16,6 +16,9 @@
     "monitoring",
     "api"
   ],
+  "files": [
+    "dist/statuspage.js"
+  ],
   "author": "Dionisio Perez-Mavrogenis",
   "license": "ISC",
   "devDependencies": {
