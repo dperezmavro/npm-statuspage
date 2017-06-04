@@ -1,10 +1,10 @@
 const axios = require('axios')
-// const debug = require("debug")("StatusPage")
-// const moment = require('moment')
+const debug = require("debug")("StatusPage")
+const moment = require('moment')
 
 class StatusPage {
   constructor(apiKey, pageId) {
-    this.now = () => 42 // moment
+    this.now = moment
     this.apiKey = apiKey
     this.pageId = pageId
     this.instance = axios.create({
@@ -79,7 +79,7 @@ class StatusPage {
   }
 
   log(msg) {
-    console.log(msg)
+    debug(msg)
   }
 }
 
