@@ -1,0 +1,26 @@
+machine:
+  services:
+    - docker
+  environment:
+    PROD_ENV: "true"
+  node:
+      version: 6.10.0
+
+dependencies:
+  pre:
+    - echo -e "$NPM_USER\n$NPM_PASS\naws-lmlt-dev@lastmilelink.com" | npm login
+  override:
+    - npm install
+
+test:
+  pre:
+    - npm run make
+  override:
+    - npm test
+
+deployment:
+  concourse:
+    branch: master
+    commands:
+    - npm run make:prod
+    - npm publish
