@@ -16,11 +16,6 @@ class StatusPage {
     })
   }
 
-  updateMetric(metricId, val) {
-    return this.instance.post(this.generateMetricPostPath(metricId),
-                                this.generateRequestParameters(val))
-  }
-
   generateMetricPostPath(metricId) {
     return this.generatePagePath() + `/metrics/${metricId}/data.json`
   }
@@ -41,21 +36,18 @@ class StatusPage {
     return `component[status]=${status}`
   }
 
-  getComponentEnvironment(componentName) {
-    if (!componentName) {
-      this.log('getComponentEnvironment - undefined componentName')
-      return undefined
-    }
+  generateCreateComponentPayload(name) {
+    return `component[name]=${name}`
+  }
 
-    if (componentName.indexOf('-') !== -1) {
-      return componentName
-              .split('-')
-              .slice(-1)
-              .pop()
-              .toLowerCase()
-    }
+  generateComponentsUrl() {
+    return this.generatePagePath() + '/components.json'
+  }
 
-    return undefined
+  updateMetric(metricId, val) {
+    return this.instance.post(this.generateMetricPostPath(metricId),
+                              this.generateRequestParameters(val)
+    )
   }
 
   updateComponentState(componentId, status, componentName) {
@@ -71,14 +63,6 @@ class StatusPage {
     )
 
     return res.data
-  }
-
-  generateCreateComponentPayload(name) {
-    return `component[name]=${name}`
-  }
-
-  generateComponentsUrl() {
-    return this.generatePagePath() + '/components.json'
   }
 
   createComponent(componentName) {

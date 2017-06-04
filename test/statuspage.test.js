@@ -3,7 +3,7 @@ const axios = require('axios')
 // const sinon = require('sinon')
 const uuid = require('uuid')
 // var moment = require('moment')
-var {StatusPage} = require('../index.js')
+var StatusPage = require('../index.js')
 const metric_id = '07fbhggxqj6l'
 
 describe('StatusPage', () => {
@@ -133,27 +133,5 @@ describe('StatusPage', () => {
       status,
       undefined
     )
-  })
-
-  it('Should return environment', () => {
-      var testTable = [
-          {name: 'test-dev', desired: 'dev'},
-          {name: 'test-smart-DEV', desired: 'dev'},
-          {name: 'test', desired: undefined},
-          {name: '', desired: undefined},
-          {name: 'test-SMART-DEV', desired: 'dev'},
-          {name: 'test-DEV', desired: 'dev'},
-          {name: 'test-PROD', desired: 'prod'},
-          {name: 'test-SI', desired: 'si'},
-          {name: 'test-smart-si', desired: 'si'},
-          {name: undefined, desired: undefined}
-      ]
-
-      let status = new StatusPage()
-      testTable.forEach((t) => {
-        expect(
-          status.getComponentEnvironment(t.name)
-        ).toEqual(t.desired)
-      })
   })
 })
