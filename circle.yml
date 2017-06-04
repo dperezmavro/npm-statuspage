@@ -7,8 +7,6 @@ machine:
       version: 6.10.0
 
 dependencies:
-  pre:
-    - echo -e "$NPM_USER\n$NPM_PASS\naws-lmlt-dev@lastmilelink.com" | npm login
   override:
     - npm install
 
