@@ -6,7 +6,7 @@
   "scripts": {
     "make": "./node_modules/.bin/webpack",
     "make:prod": "PROD_ENV=1 ./node_modules/.bin/webpack",
-    "test": "npm run make && ./node_modules/.bin/mocha"
+    "test": "npm run make:prod && ./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",

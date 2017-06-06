@@ -50,7 +50,7 @@ class StatusPage {
     )
   }
 
-  updateComponentState(componentId, status, componentName) {
+  updateComponentState(componentId, status) {
     return this.instance.patch(
       this.generateComponentPath(componentId),
       this.generateComponentStatusPayload(status)
